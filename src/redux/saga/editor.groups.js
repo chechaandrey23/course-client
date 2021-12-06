@@ -10,7 +10,7 @@ function* getAllGroupsSaga({payload = {}}) {
 	yield put(startLoadGroups());
 	const res = yield call(request, {
 		method: 'get',
-		url: `/editor/groups`,
+		url: `/guest/groups`,
 		...defaultRequestSettings
 	});
 	yield put(getGroups(res.data));

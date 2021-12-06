@@ -17,7 +17,7 @@ export function request(opts) {
 						rej(getError(e))
 					});
 				}).catch((e) => {
-					rej(getError(e))
+					rej(getError(e));
 				});
 			} else {
 				rej(getError(e))

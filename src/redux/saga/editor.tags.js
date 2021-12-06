@@ -10,7 +10,7 @@ function* getPartTagsSaga({payload = {}}) {
 	yield put(startLoadTags());
 	const res = yield call(request, {
 		method: 'get',
-		url: `/editor/part-tags/`+encodeURIComponent(payload),
+		url: `/guest/part-tags/`+encodeURIComponent(payload),
 		...defaultRequestSettings
 	});
 	yield put(getTags(res.data));

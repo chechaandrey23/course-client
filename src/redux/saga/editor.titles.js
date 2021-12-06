@@ -10,7 +10,7 @@ function* getPartTitlesSaga({payload = {}}) {
 	yield put(startLoadTitles());
 	const res = yield call(request, {
 		method: 'get',
-		url: `/editor/part-titles/`+encodeURIComponent(payload),
+		url: `/guest/part-titles/`+encodeURIComponent(payload),
 		...defaultRequestSettings
 	});
 	yield put(getTitles(res.data));
