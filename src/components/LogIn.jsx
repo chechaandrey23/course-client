@@ -85,6 +85,12 @@ export default function LogIn(props) {
 				<Col md="auto">
 					<a href="/auth/api/github" class="btn btn-outline-success" role="button" aria-pressed="true">logIn with GitHub</a>
 				</Col>
+				<Col md="auto">
+					<a href="/auth/api/facebook" class="btn btn-outline-primary" role="button" aria-pressed="true">logIn with FaceBook</a>
+				</Col>
+				<Col md="auto">
+					<a href="/auth/api/google" class="btn btn-outline-warning" role="button" aria-pressed="true">logIn with Google</a>
+				</Col>
 			</Row>
 		</Container>
 	)
