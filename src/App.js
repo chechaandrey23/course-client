@@ -12,6 +12,7 @@ import PageReviews from './pages/PageReviews';
 import PageReview from './pages/PageReview';
 import PageMyReviews from './pages/PageMyReviews';
 import PageMyReviewEdit from './pages/PageMyReviewEdit';
+import PageSearchReviews from './pages/PageSearchReviews';
 
 export default function App() {
 	return (
@@ -20,14 +21,13 @@ export default function App() {
 				<Route path="user" element={<PageUser />} />
 				<Route path="registration" element={<PageRegistration />} />
 				<Route path="login" element={<PageLogin />} />
-				
-				<Route path="reviews/order-:order/tag-:tag" element={<PageReviews />} />
-				<Route path="reviews/order-:order" element={<PageReviews />} />
-				<Route path="reviews/tag-:tag" element={<PageReviews />} />
+
+				<Route path="search/:query" element={<PageSearchReviews />} />
+
 				<Route path="reviews" element={<PageReviews />} />
-				
+
 				<Route path="review/:id" element={<PageReview />} />
-				
+
 				<Route path="my-reviews" element={<PageMyReviews />} />
 				<Route path="my-review-edit/:id" element={<PageMyReviewEdit />} />
 				<Route path="/" element={<PageReviews />} />

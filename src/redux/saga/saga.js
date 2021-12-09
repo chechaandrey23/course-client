@@ -14,6 +14,7 @@ import {guestEditorsSagas} from './guest.editors.js';
 import {userRatingsSagas} from './user.ratings.js';
 import {userLikesSagas} from './user.likes.js';
 import {userCommentsSagas} from './user.comments.js';
+import {userSearchReviewsSagas} from './user.search.reviews.js';
 
 // takeLatest
 // takeLatest
@@ -33,7 +34,8 @@ export default function* rootSaga() {
 		...guestEditorsSagas,
 		...userRatingsSagas,
 		...userLikesSagas,
-		...userCommentsSagas
+		...userCommentsSagas,
+		...userSearchReviewsSagas
 	];
 
 	yield all(sagas.map((o) => {
