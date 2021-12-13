@@ -11,6 +11,7 @@ import ReviewFull from '../components/ReviewFull';
 import RightBar from '../components/RightBar';
 import SearchBar from '../components/SearchBar';
 import ReviewComments from '../components/ReviewComments';
+import OtherAuthorReviews from '../components/OtherAuthorReviews';
 
 export default function PageReview() {
 	const [cookies,, removeCookie] = useCookies();
@@ -19,7 +20,10 @@ export default function PageReview() {
 		<Container>
 			<TopNavBar />
 			<SearchBar />
-			<BodyContent content={<ReviewFull />} addContent={isUser(cookies.Roles)?<ReviewComments />:null} rightbar={<RightBar />} />
+			<BodyContent 	content={<ReviewFull />}
+							addContent={isUser(cookies.Roles)?<ReviewComments />:null}
+							rightbar={<RightBar />}
+							addRightBar={<OtherAuthorReviews />} />
 		</Container>
 	)
 }

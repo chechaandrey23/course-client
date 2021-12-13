@@ -4,34 +4,32 @@ import {request} from './helpers/helper.request.js';
 import {defaultRequestSettings} from './helpers/helper.default.request.settings.js';
 import {createSagas, createActions} from './helpers/helper.saga.js';
 
-import {moreReviews, getReviews, getReview, getReviewLoading, getReviewError} from "../user.reviews.js";
+import {moreReviews, startLoadMoreReviews, endLoadMoreReviews,
+		getReviews, startLoadGetReviews, endLoadGetReviews,
+		getReviewItem, startLoadGetReviewItem, endLoadGetReviewItem} from "../user.reviews.js";
 
-function* moreSearchReviewsSaga({payload={}}) {
-	try {
-		const res = yield call(request, {
-			method: 'get',
-			url: `/${payload.isUser?'user':'guest'}/search/${payload.query}`,
-			params: payload.params,
-			...defaultRequestSettings
-		});
-		yield put(moreReviews(res.data));
-	} catch(e) {
-		throw e;
-	}
+function* getSearchReviewsSaga({payload = {}}) {
+	yield put(startLoadGetReviews());
+	const res = yield call(request, {
+		method: 'get',
+		url: `/${payload.isUser?'user':'guest'}/search/${payload.query}`,
+		params: payload.params,
+		...defaultRequestSettings
+	});
+	yield put(getReviews(res.data));
+	yield put(endLoadGetReviews());
 }
 
-function* getSearchReviewsSaga({payload={}}) {
-	try {
-		const res = yield call(request, {
-			method: 'get',
-			url: `/${payload.isUser?'user':'guest'}/search/${payload.query}`,
-			params: payload.params,
-			...defaultRequestSettings
-		});
-		yield put(getReviews(res.data));
-	} catch(e) {
-		throw e;
-	}
+function* moreSearchReviewsSaga({payload = {}}) {
+	yield put(startLoadMoreReviews());
+	const res = yield call(request, {
+		method: 'get',
+		url: `/${payload.isUser?'user':'guest'}/search/${payload.query}`,
+		params: payload.params,
+		...defaultRequestSettings
+	});
+	yield put(moreReviews(res.data));
+	yield put(endLoadMoreReviews());
 }
 
 const FETCH_MORE_SEARCH_REVIEWS = 'FETCH_MORE_SEARCH_REVIEWS';

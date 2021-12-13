@@ -13,6 +13,7 @@ import PageReview from './pages/PageReview';
 import PageMyReviews from './pages/PageMyReviews';
 import PageMyReviewEdit from './pages/PageMyReviewEdit';
 import PageSearchReviews from './pages/PageSearchReviews';
+import PageMyReviewNew from './pages/PageMyReviewNew';
 
 export default function App() {
 	return (
@@ -29,6 +30,7 @@ export default function App() {
 				<Route path="review/:id" element={<PageReview />} />
 
 				<Route path="my-reviews" element={<PageMyReviews />} />
+				<Route path="my-review-new" element={<PageMyReviewNew />} />
 				<Route path="my-review-edit/:id" element={<PageMyReviewEdit />} />
 				<Route path="/" element={<PageReviews />} />
 			</Routes>

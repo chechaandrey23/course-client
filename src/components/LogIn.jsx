@@ -26,6 +26,7 @@ export default function LogIn(props) {
 	const dispatch = useDispatch();
 	const error = useSelector((state) => state.userUser.errorLogin);
 	const login = useSelector((state) => state.userUser.login);
+	const user = useSelector((state) => state.userUser.user);
 
 	useEffect(() => {
 		if(login) {
@@ -35,6 +36,8 @@ export default function LogIn(props) {
 	}, [login]);
 
 	const {register, handleSubmit, watch, formState: {errors}} = useForm({resolver: yupResolver(validationSchema)});
+
+	useEffect(() => () => {dispatch(errorLogin(false))}, [user]);
 
 	return (
 		<Container className="border border-primary rounded bg-light mt-1 mb-1">

@@ -19,6 +19,7 @@ export const storeEditorTitles = createSlice({
 		endLoadTitles(state, action) {
 			state.loadTitles = false;
 		},
+		
 		startLoadNewTitle(state, action) {
 			state.loadNewTitle = true;
 		},

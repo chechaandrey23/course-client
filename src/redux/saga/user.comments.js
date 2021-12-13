@@ -7,7 +7,9 @@ import {createSagas, createActions} from './helpers/helper.saga.js';
 import {moreComments, startLoadMoreComments, endLoadMoreComments,
 		getComments, startLoadGetComments, endLoadGetComments,
 		autoUpdateComments, startLoadAutoUpdateComments, endLoadAutoUpdateComments,
-		startLoadNewComment, endLoadNewComment, newComment, errorNewComment} from "../user.comments.js";
+		startLoadNewComment, endLoadNewComment, newComment, errorNewComment,
+		startLoadRemoveComment, removeComment, errorRemoveComment, endLoadRemoveComment,
+		startLoadEditComment, endLoadEditComment, errorLoadEditComment, editComment} from "../user.comments.js";
 
 
 function* getCommentsSaga({payload = {}}) {
@@ -39,7 +41,7 @@ function* autoUpdateCommentsSaga({payload = {}}) {
 	const res = yield call(request, {
 		method: 'get',
 		url: `/user/auto-update-comments`,
-		params: payload,
+		params: {time: payload.time, reviewId: payload.reviewId},
 		...defaultRequestSettings
 	});
 	yield put(autoUpdateComments(res.data));
@@ -64,21 +66,63 @@ function* newCommentSaga({payload = {}}) {
 	}
 }
 
+function* removeCommentSaga({payload = {}}) {
+	try {
+		yield put(startLoadRemoveComment(payload.id));
+		const res = yield call(request, {
+			method: 'post',
+			url: `/user/remove-comment`,
+			data: {id: payload.id},
+			...defaultRequestSettings
+		});
+		yield put(removeComment(res.data));
+	} catch(e) {
+		delete e.config
+		yield put(errorRemoveComment(e));
+	} finally {
+		yield put(endLoadRemoveComment(payload.id));
+	}
+}
+
+function* editCommentSaga({payload = {}}) {
+	try {
+		yield put(startLoadEditComment(payload.id));
+		const res = yield call(request, {
+			method: 'post',
+			url: `/user/edit-comment`,
+			data: {comment: payload.comment, reviewId: payload.reviewId, id: payload.id},
+			...defaultRequestSettings
+		});
+		yield put(editComment(res.data));
+	} catch(e) {
+		delete e.config
+		yield put(errorLoadEditComment(e));
+	} finally {
+		yield put(endLoadEditComment(payload.id));
+	}
+}
+
 const FETCH_COMMENTS = 'FETCH_COMMENTS';
 const FETCH_MORE_COMMENTS = 'FETCH_MORE_COMMENTS';
 const FETCH_AUTO_UPDATE_COMMENTS = 'FETCH_AUTO_UPDATE_COMMENTS';
 const FETCH_NEW_COMMENT = 'FETCH_NEW_COMMENT';
+const FETCH_REMOVE_COMMENT = 'FETCH_REMOVE_COMMENT';
+const FETCH_EDIT_COMMENT = 'FETCH_EDIT_COMMENT';
 
 export const userCommentsSagas = createSagas([
 	[FETCH_COMMENTS, getCommentsSaga],
 	[FETCH_MORE_COMMENTS, moreCommentsSaga],
 	[FETCH_AUTO_UPDATE_COMMENTS, autoUpdateCommentsSaga],
-	[FETCH_NEW_COMMENT, newCommentSaga]
+	[FETCH_NEW_COMMENT, newCommentSaga],
+	[FETCH_REMOVE_COMMENT, removeCommentSaga],
+	[FETCH_EDIT_COMMENT, editCommentSaga]
 ]);
 
-export const {sagaGetComments, sagaMoreComments, sagaAutoUpdateComments, sagaNewComment} = createActions({
+export const {sagaGetComments, sagaMoreComments, sagaAutoUpdateComments, sagaNewComment, sagaRemoveComment, sagaEditComment} = createActions({
 	sagaGetComments: FETCH_COMMENTS,
 	sagaMoreComments: FETCH_MORE_COMMENTS,
 	sagaAutoUpdateComments: FETCH_AUTO_UPDATE_COMMENTS,
 	sagaNewComment: FETCH_NEW_COMMENT,
+	sagaRemoveComment: FETCH_REMOVE_COMMENT,
+	sagaEditComment: FETCH_EDIT_COMMENT
 });

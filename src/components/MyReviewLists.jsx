@@ -7,7 +7,7 @@ import ReactMarkdown from 'react-markdown';
 import PopoverFilterReviews from './PopoverFilterReviews';
 import MyReviewRow from './MyReviewRow';
 
-import {sagaGetReviews, sagaNewReview} from '../redux/saga/editor.reviews.js';
+import {sagaGetReviews} from '../redux/saga/editor.reviews.js';
 import {newReview as newReviewAC} from '../redux/editor.reviews.js';
 
 const sortFields = [
@@ -34,8 +34,6 @@ export default function MyReviewLists() {
 		dispatch(sagaGetReviews(searchParams));
 	}, [searchParams]);
 
-	const createReview = useCallback(() => {dispatch(sagaNewReview())});
-
 	useEffect(() => {
 		if(newReview) {
 			navigate('/my-review-edit/'+newReview.id);
@@ -52,7 +50,7 @@ export default function MyReviewLists() {
 							<PopoverFilterReviews withAuthors={false} sortFields={sortFields} typeFilter="editor" />
 						</td>
 						<td className="text-center" colSpan="3">
-							<Button variant="outline-success" onClick={createReview}>Create</Button>
+							<Link to="/my-review-new" className="btn btn-outline-success">Create</Link>
 						</td>
 					</tr>
 					<tr>

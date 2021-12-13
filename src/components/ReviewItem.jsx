@@ -1,3 +1,4 @@
+import queryString from 'query-string';
 import React, { Component, useRef, useLayoutEffect, useEffect } from 'react';
 import {useSelector, useDispatch } from 'react-redux';
 import {Routes, Route, Link} from "react-router-dom";
@@ -19,7 +20,7 @@ export default function ReviewItem(props) {
 		<Container className="border border-primary rounded bg-light mt-1 mb-1">
 			<Row className="align-items-center mt-1 mb-1">
 				<Col>
-					<span className="h6">{props.group}</span>
+					<Link to={'/reviews'+'?'+queryString.stringify({groups: [props.groupId]}, {arrayFormat: 'bracket'})}><span className="h6">{props.group}</span></Link>
 					<span> / </span>
 					<Link to={"/review/"+props.id}><span className="h6">{props.title}</span></Link>
 				</Col>

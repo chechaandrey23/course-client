@@ -6,6 +6,7 @@ import {useCookies} from 'react-cookie';
 
 import ReviewItem from './ReviewItem';
 import PopoverFilterReviews from './PopoverFilterReviews';
+import Filler from './Filler';
 
 import {sagaGetSearchReviews} from '../redux/saga/user.search.reviews.js';
 
@@ -14,6 +15,7 @@ import {isUser, isEditor, isAdmin} from '../helpers/roles.js';
 export default function ReviewLists() {
 	const [cookies,, removeCookie] = useCookies();
 	const reviews = useSelector((state) => state.userReviews.data);
+	const reviewsLoading = useSelector((state) => state.userReviews.dataLoading);
 	const dispatch = useDispatch();
 
 	const [searchParams] = useSearchParams();
@@ -25,6 +27,14 @@ export default function ReviewLists() {
 
 	return (
 		<div>
+			{reviewsLoading?<Row>
+				<Col>
+					<Container className="border border-primary rounded bg-light mt-1 mb-1">
+						<Filler ignorePadding={true} className="rounded" size='4rem' />
+						<Row><Col style={{minHeight: '100px'}}></Col></Row>
+					</Container>
+				</Col>
+			</Row>:null}
 			<Row><Col>{reviews.map((entry) => {
 				return <ReviewItem  key={entry.id}
 									id={entry.id}

@@ -7,6 +7,7 @@ import BodyContent from '../components/BodyContent';
 import ReviewLists from '../components/ReviewLists';
 import RightBar from '../components/RightBar';
 import SearchBar from '../components/SearchBar';
+import OtherAuthorReviews from '../components/OtherAuthorReviews';
 
 export default function PageReviews() {
 	return (

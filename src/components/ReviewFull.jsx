@@ -9,12 +9,14 @@ import {useCookies} from 'react-cookie';
 
 import {isUser, isEditor, isAdmin} from '../helpers/roles.js';
 
-import {setReviewId} from '../redux/user.comments.js';
+//import {setReviewId} from '../redux/user.comments.js';
+import {getReviewItem, setCurrentReview} from '../redux/user.reviews.js';
 
 import {sagaGetReview} from '../redux/saga/user.reviews.js';
 
 import ReviewRating from './ReviewRating';
 import ReviewLike from './ReviewLike';
+import Filler from './Filler';
 
 export default function ReviewFull(props) {
 	const [cookies,, removeCookie] = useCookies();
@@ -29,18 +31,26 @@ export default function ReviewFull(props) {
 	useEffect(() => {
 		dispatch(sagaGetReview({id: params.id, isUser: isUser(cookies.Roles)}));
 		setFirstRender(false);
-	}, []);
+	}, [params]);
 
 	useEffect(() => {
-		if(review) dispatch(setReviewId(review.id));
+		if(review && review.id) {
+			dispatch(setCurrentReview(review));
+		}
 	}, [review]);
 
-	let content, contentComments;
+	useLayoutEffect(() => () => {
+		dispatch(getReviewItem(null));
+		dispatch(setCurrentReview(null));
+	}, [params]);
 
-	if(reviewLoading || firstRender) {
-		content = <h2>loading...</h2>
-	} else {
-		content = <Container className="border border-primary rounded bg-light mt-1 mb-1">
+	//useLayoutEffect(() => () => {}, []);
+
+	return (<>
+		{(reviewLoading || firstRender)?<Container className="border border-primary rounded bg-light mt-1 mb-1">
+			<Filler ignorePadding={true} className="rounded" size='6rem' />
+			<Row><Col style={{minHeight: '200px'}}></Col></Row>
+		</Container>:(review?<Container className="border border-primary rounded bg-light mt-1 mb-1">
 			<Row className="mt-2">
 				<Col className="text-center"><div>
 					{isUser(cookies.Roles)?<ReviewRating data={review.ratings || []} reviewId={review.id} />:null}
@@ -93,8 +103,12 @@ export default function ReviewFull(props) {
 			<Row className="text-end">
 				<Col><span className="text-secondary">{t('intlDateTime', {val: new Date(props.date)})}</span></Col>
 			</Row>
-		</Container>
-	}
-
-	return (<>{content}</>)
+		</Container>:<Container className="border border-primary rounded bg-light mt-1 mb-1">
+			<Row className="mt-3 mb-3">
+				<Col className="text-center">
+					<span className="h3">Review "{params.id}" NOT FOUND!!!</span>
+				</Col>
+			</Row>
+		</Container>)}
+	</>);
 }

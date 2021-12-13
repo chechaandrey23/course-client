@@ -7,7 +7,7 @@ export default function BodyContent(props) {
 	return (
 		<Row>
 			<Col style={{paddingRight: '.125rem'}}>{props.content}{props.addContent?props.addContent:null}</Col>
-			<Col md="auto" style={{paddingLeft: '.125rem'}}>{props.rightbar}</Col>
+			<Col md="auto" style={{paddingLeft: '.125rem'}}>{props.rightbar}{props.addRightBar?props.addRightBar:null}</Col>
 		</Row>
 	)
 }

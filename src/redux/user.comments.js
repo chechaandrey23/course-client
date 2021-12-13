@@ -5,9 +5,7 @@ import Paginator from './helpers/Paginator.js'
 export const storeUserComments = createSlice({
 	name: 'userComments',
 	initialState: {
-		reviewId: null,
-
-		paginator: new Paginator(20),
+		paginator: new Paginator(10),
 
 		comments: [],
 		commentsLoading: false,
@@ -16,13 +14,13 @@ export const storeUserComments = createSlice({
 
 		newComment: false,
 		newCommentLoading: false,
-		newCommentError: false
+		newCommentError: false,
+
+		commentProcessing: [],
+
+		editCommentError: false,
 	},
 	reducers: {
-		setReviewId(state, action) {
-			state.reviewId = action.payload;
-		},
-
 		moreComments(state, action) {
 			//state.data = [...state.data, ...action.payload];
 			state.paginator.addWithReplace(state, 'comments', action.payload);
@@ -53,15 +51,14 @@ export const storeUserComments = createSlice({
 		},
 		newComment(state, action) {
 			state.newComment = action.payload;
-			// ...
+			state.paginator.append(state, 'comments', [action.payload]);
 		},
 		errorNewComment(state, action) {
 			state.newCommentError = action.payload;
 		},
 
 		autoUpdateComments(state, action) {
-			//state.data = [...state.data, ...action.payload];
-			state.paginator.addToEnd(state, 'comments', action.payload);
+			state.paginator.append(state, 'comments', action.payload);
 		},
 		startLoadAutoUpdateComments(state, action) {
 			state.commentsAutoUpdateLoading = true;
@@ -69,6 +66,35 @@ export const storeUserComments = createSlice({
 		endLoadAutoUpdateComments(state, action) {
 			state.commentsAutoUpdateLoading = false;
 		},
+
+		startLoadRemoveComment(state, action) {
+			state.commentProcessing = [...state.commentProcessing, action.payload];
+		},
+		removeComment(state, action) {
+			state.paginator.remove(state, 'comments', (entry) => entry.id != action.payload.id);
+		},
+		errorRemoveComment(state, action) {
+			console.log(action.payload);
+		},
+		endLoadRemoveComment(state, action) {
+			state.commentProcessing = state.commentProcessing.filter((entry) => entry.id == action.payload);
+		},
+
+		startLoadEditComment(state, action) {
+			state.commentProcessing = [...state.commentProcessing, action.payload];
+		},
+		endLoadEditComment(state, action) {
+			state.commentProcessing = state.commentProcessing.filter((entry) => entry.id == action.payload);
+		},
+		errorLoadEditComment(state, action) {
+			state.editCommentError = action.payload;
+		},
+		editComment(state, action) {
+			state.comments = state.comments.map((entry) => {
+				return entry.id == action.payload.id?action.payload:entry;
+			});
+		},
+
 	}
 });
 
@@ -76,6 +102,8 @@ export const {	moreComments, startLoadMoreComments, endLoadMoreComments,
 				getComments, startLoadGetComments, endLoadGetComments,
 				autoUpdateComments, startLoadAutoUpdateComments, endLoadAutoUpdateComments,
 				startLoadNewComment, endLoadNewComment, newComment, errorNewComment,
+				startLoadRemoveComment, removeComment, errorRemoveComment, endLoadRemoveComment,
+				startLoadEditComment, endLoadEditComment, errorLoadEditComment, editComment,
 				setReviewId} = storeUserComments.actions;
 
 export default storeUserComments.reducer;

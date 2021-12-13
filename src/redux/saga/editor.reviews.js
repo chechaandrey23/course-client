@@ -63,6 +63,7 @@ function* editReviewSaga({payload = {}}) {
 	}
 }
 
+/*
 function* newReviewSaga({payload = {}}) {
 	try {
 		yield put(startLoadNewReview());
@@ -80,6 +81,7 @@ function* newReviewSaga({payload = {}}) {
 		yield put(endLoadNewReview());
 	}
 }
+*/
 
 function* removeReviewSaga({payload = {}}) {
 	try {
@@ -102,7 +104,7 @@ function* removeReviewSaga({payload = {}}) {
 const FETCH_REVIEWS = 'FETCH_REVIEWS';
 const FETCH_MORE_REVIEWS = 'FETCH_MORE_REVIEWS';
 const FETCH_REVIEW = 'FETCH_REVIEW';
-const FETCH_NEW_REVIEW = 'FETCH_NEW_REVIEW';
+//const FETCH_NEW_REVIEW = 'FETCH_NEW_REVIEW';
 const FETCH_EDIT_REVIEW = 'FETCH_EDIT_REVIEW';
 const REMOVE_REVIEW = 'REMOVE_REVIEW';
 
@@ -110,16 +112,16 @@ export const editorReviewsSagas = createSagas([
 	[FETCH_REVIEWS, getReviewsSaga],
 	[FETCH_MORE_REVIEWS, moreReviewsSaga],
 	[FETCH_REVIEW, getReviewSaga],
-	[FETCH_NEW_REVIEW, newReviewSaga],
+	//[FETCH_NEW_REVIEW, newReviewSaga],
 	[FETCH_EDIT_REVIEW, editReviewSaga],
 	[REMOVE_REVIEW, removeReviewSaga]
 ]);
 
-export const {sagaGetReviews, sagaMoreReviews, sagaGetReview, sagaNewReview, sagaEditReview, sagaRemoveReview} = createActions({
+export const {sagaGetReviews, sagaMoreReviews, sagaGetReview, /*sagaNewReview, */sagaEditReview, sagaRemoveReview} = createActions({
 	sagaGetReviews: FETCH_REVIEWS,
 	sagaMoreReviews: FETCH_MORE_REVIEWS,
 	sagaGetReview: FETCH_REVIEW,
-	sagaNewReview: FETCH_NEW_REVIEW,
+	//sagaNewReview: FETCH_NEW_REVIEW,
 	sagaEditReview: FETCH_EDIT_REVIEW,
 	sagaRemoveReview: REMOVE_REVIEW
 });

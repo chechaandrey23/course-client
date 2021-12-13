@@ -6,6 +6,7 @@ import {useCookies} from 'react-cookie';
 
 import ReviewItem from './ReviewItem';
 import PopoverFilterReviews from './PopoverFilterReviews';
+import Filler from './Filler';
 
 import {sagaGetReviews} from '../redux/saga/user.reviews.js';
 
@@ -23,6 +24,7 @@ const sortFields = [
 export default function ReviewLists() {
 	const [cookies,, removeCookie] = useCookies();
 	const reviews = useSelector((state) => state.userReviews.data);
+	const reviewsLoading = useSelector((state) => state.userReviews.dataLoading);
 	const dispatch = useDispatch();
 
 	const [searchParams] = useSearchParams();
@@ -42,11 +44,20 @@ export default function ReviewLists() {
 				</Row>
 				</Container>
 			</Col></Row>
+			{reviewsLoading?<Row>
+				<Col>
+					<Container className="border border-primary rounded bg-light mt-1 mb-1">
+						<Filler ignorePadding={true} className="rounded" size='4rem' />
+						<Row><Col style={{minHeight: '100px'}}></Col></Row>
+					</Container>
+				</Col>
+			</Row>:null}
 			<Row><Col>{reviews.map((entry) => {
 				return <ReviewItem  key={entry.id}
 									id={entry.id}
 									title={entry.groupTitle?.title?.title}
 									group={entry.groupTitle?.group?.group}
+									groupId={entry.groupTitle?.group?.id}
 									ratings={entry.ratings || []}
 									likes={entry.likes || []}
 									description={entry.description}
