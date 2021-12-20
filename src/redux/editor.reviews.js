@@ -1,8 +1,12 @@
 import {createSlice} from '@reduxjs/toolkit'
 
+import Paginator from './helpers/Paginator.js'
+
 export const storeEditorReviews = createSlice({
 	name: 'editorReviews',
 	initialState: {
+		paginator: new Paginator(10),
+
 		data: [],
 		dataLoading: false,
 		dataMoreLoading: false,
@@ -11,15 +15,17 @@ export const storeEditorReviews = createSlice({
 		dataItemSetLoading: false,
 		dataItemError: false,
 		dataItemNewLoading: false,
-		
+
 		dataItemRemoveLoading: false,
 		dataItemRemoveError: false,
-		
-		newReview: false
+
+		newReview: false,
+		dataNewError: false
 	},
 	reducers: {
 		moreReviews(state, action) {
-			state.data = [...state.data, ...action.payload];
+			//state.data = [...state.data, ...action.payload];
+			state.paginator.addWithReplace(state, 'data', action.payload);
 		},
 		startLoadMoreReviews(state, action) {
 			state.dataMoreLoading = true;
@@ -27,9 +33,10 @@ export const storeEditorReviews = createSlice({
 		endLoadMoreReviews(state, action) {
 			state.dataMoreLoading = false;
 		},
-		
+
 		getReviews(state, action) {
-			state.data = [...action.payload];
+			//state.data = [...action.payload];
+			state.paginator.replace(state, 'data', action.payload);
 		},
 		startLoadGetReviews(state, action) {
 			state.dataLoading = true;
@@ -37,7 +44,7 @@ export const storeEditorReviews = createSlice({
 		endLoadGetReviews(state, action) {
 			state.dataLoading = false;
 		},
-		
+
 		getReview(state, action) {
 			state.dataItem = action.payload;
 		},
@@ -56,7 +63,7 @@ export const storeEditorReviews = createSlice({
 		errorSetReview(state, action) {
 			state.dataItemError = action.payload;
 		},
-		
+
 		startLoadNewReview(state, action) {
 			state.dataItemNewLoading = true;
 		},
@@ -66,7 +73,10 @@ export const storeEditorReviews = createSlice({
 		newReview(state, action) {
 			state.newReview = action.payload;
 		},
-		
+		errorNewReview(state, action) {
+			state.dataNewError = action.payload;
+		},
+
 		startLoadRemoveReview(state, action) {
 			state.dataItemRemoveLoading = true;
 		},
@@ -77,7 +87,8 @@ export const storeEditorReviews = createSlice({
 			state.dataItemRemoveError = action.payload;
 		},
 		removeReview(state, action) {
-			state.data = state.data.filter((entry) => entry.id !== action.payload.id);
+			//state.data = state.data.filter((entry) => entry.id !== action.payload.id);
+			state.paginator.remove(state, 'data', (entry) => entry.id != action.payload.id);
 		}
 	}
 });

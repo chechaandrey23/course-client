@@ -1,6 +1,7 @@
 import React, { Component, useRef, useLayoutEffect, useEffect, useState, useCallback } from 'react';
 import {useSelector, useDispatch } from 'react-redux';
 import {Container, Row, Col, Button, Form, Alert, Modal, Tabs, Tab, Image, ProgressBar} from 'react-bootstrap';
+import {useTranslation} from "react-i18next";
 
 import Filler from '../components/Filler';
 
@@ -10,20 +11,17 @@ import {selectedImageUploadAC, selectedImageInsertAC, errorNewImageAC, progressL
 const PAGE_IMAGES = 20;
 
 export default function ImageLists() {
-	const [page, setPage] = useState(1);
+	const {t} = useTranslation('image/ImageLists');
 	const images = useSelector(state => state.editorImages.images);
 	const loadImages = useSelector(state => state.editorImages.loadImages);
 	const selectedImageInsert = useSelector(state => state.editorImages.selectedImageInsert);
 	const loadMoreImages = useSelector(state => state.editorImages.loadMoreImages);
+	const imagePaginator = useSelector((state) => state.editorImages.paginator);
 	const dispatch = useDispatch();
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		dispatch(sagaGetPartImages());
 	}, []);
-
-	useEffect(() => {
-		if(page * PAGE_IMAGES - PAGE_IMAGES > images.length) setPage(page - 1);
-	}, [images]);
 
 	return (
 		<Container>
@@ -48,11 +46,10 @@ export default function ImageLists() {
 			</Row>
 			<Row className="mt-3">
 				<Col>
-					{loadMoreImages?<Filler size="1.25rem" />:null}
-					<Button variant="outline-primary" style={{width: '100%'}} onClick={() => {
-						dispatch(sagaMorePartImages({page: page + 1}));
-						setPage(page + 1);
-					}} >more images</Button>
+					{loadMoreImages?<Filler size="1.5rem" />:null}
+					<Button variant="outline-info" style={{width: '100%'}} onClick={() => {
+						dispatch(sagaMorePartImages({page: imagePaginator.getPageForQuery()}));
+					}}>{t('more images')}</Button>
 				</Col>
 			</Row>
 		</Container>

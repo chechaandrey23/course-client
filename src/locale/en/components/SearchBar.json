@@ -1,0 +1,7 @@
+{
+	"Enter query": "Enter query",
+	"Search": "Search",
+	"Query is required": "Query is required",
+	"Query must be at least 3 characters": "Query must be at least 3 characters",
+	"Query must not exceed 255 characters": "Query must not exceed 255 characters"
+}

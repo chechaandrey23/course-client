@@ -12,11 +12,11 @@ import {errorLoadEditComment} from '../redux/user.comments.js';
 import Filler from './Filler';
 
 const validationSchemaModal = Yup.object().shape({
-	comment: Yup.string().required().max(3000, 'Description must be maximum 3000 characters')
+	comment: Yup.string().required('Comment is required').min(10, 'Commeent must be at least 10 characters').max(3000, 'Comment must be maximum 3000 characters')
 });
 
 export default function ReviewCommentEdit(props) {
-	const {t} = useTranslation();
+	const {t} = useTranslation('components/ReviewCommentEdit');
 	const dispatch = useDispatch();
 
 	const [show, setShow] = useState(false);
@@ -50,16 +50,16 @@ export default function ReviewCommentEdit(props) {
 	}, [props]);
 
 	return (<>
-		<Button variant="primary" size="sm" onClick={handleShow}>Edit</Button>
+		<Button variant="primary" size="sm" onClick={handleShow}>{t('Edit')}</Button>
 		<Modal show={show} onHide={handleClose} animation={false} centered size="lg">
 			<Modal.Header closeButton>
-				<Modal.Title>Modal Edit Comment</Modal.Title>
+				<Modal.Title>{t('Modal Edit Comment')}</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
 				{(commentProcessing.includes(props.id))?<Filler size='6rem' />:null}
 				<div>
 					{editCommentError?<Alert variant="danger" onClose={() => {dispatch(errorLoadEditComment(false))}} dismissible>
-						<Alert.Heading>Server Error Message</Alert.Heading>
+						<Alert.Heading>{t('Server Error Message')}</Alert.Heading>
 						<p>{editCommentError.data.reason || editCommentError.data.message}</p>
 					</Alert>:null}
 				</div>
@@ -69,19 +69,19 @@ export default function ReviewCommentEdit(props) {
 					//setShow(false);
 				})}>
 				<Form.Group as={Row} className="mb-3" controlId="formBasicComment">
-					<Form.Label column sm="2">comment</Form.Label>
+					<Form.Label column sm="2">{t('comment')}</Form.Label>
 					<Col sm="10">
-						<Form.Control as="textarea" {...registerModal("comment")} rows={5} placeholder="Enter comment" isInvalid={!!errorsModal.comment} />
+						<Form.Control as="textarea" {...registerModal("comment")} rows={5} placeholder={t('Enter comment')} isInvalid={!!errorsModal.comment} />
 						<Form.Control.Feedback type="invalid">
-							{errorsModal.comment?.message}
+							{t(errorsModal.comment?.message)}
 						</Form.Control.Feedback>
 					</Col>
 				</Form.Group>
 				</Form>
 			</Modal.Body>
 			<Modal.Footer className="justify-content-center">
-				<Button variant="outline-secondary" onClick={handleClose}>Close</Button>
-				<Button variant="outline-success" type="submit" form="comment-edit-modal-form">Save Comment</Button>
+				<Button variant="outline-secondary" onClick={handleClose}>{t('Close')}</Button>
+				<Button variant="outline-success" type="submit" form="comment-edit-modal-form">{t('Save Comment')}</Button>
 			</Modal.Footer>
 		</Modal>
 	</>);

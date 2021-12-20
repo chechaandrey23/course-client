@@ -1,0 +1,15 @@
+{
+	"Modal Create New Title": "Создание нового тайтла",
+	"Server Error Message": "Сообщение ошибки сервера",
+	"Title": "Название",
+	"Enter title": "Введите название",
+	"Description": "Описание",
+	"Close": "Закрыть",
+	"Create Title": "Добавить тайтл",
+	"Title is required": "Тайтл обязателен",
+	"Title must be minimum 3 characters": "Тайтл должен содержать не менее 3 символов",
+	"Title must be maximum 255 characters": "Тайтл должен быть не более 255 символов",
+	"Description is required": "Описание обязательно",
+	"Description must be at least 10 characters": "Описание должен содержать не менее 10 символов",
+	"Description must be maximum 3000 characters": "Описание должен быть не более 3000 символов"
+}

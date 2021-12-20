@@ -23,7 +23,7 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function UserSettings(props) {
-	const {t} = useTranslation();
+	const {t} = useTranslation('components/UserSettings');
 	const [firstRender, setFirstRender] = useState(true);
 	const dispatch = useDispatch();
 	const user = useSelector((state) => state.userUser.user);
@@ -45,74 +45,74 @@ export default function UserSettings(props) {
 	}, []);
 
 	return (
-		<Container className="border border-primary rounded bg-light mt-1 mb-1">
+		<Container className="border border-primary rounded mt-1 mb-1">
 			{(loadGetUser || !user.userInfo)?<Filler ignorePadding={true} className="rounded" size="3.5rem" />:null}
 			{loadSetUser?<Filler ignorePadding={true} className="rounded" size="5rem" />:null}
 			<Row className="mt-2">
 				<Col>
 					{error?<Alert variant="danger" onClose={() => {dispatch(errorSetUser(false))}} dismissible>
-						<Alert.Heading>Server Error Message</Alert.Heading>
+						<Alert.Heading>{t('Server Error Message')}</Alert.Heading>
 						<p>{error.data.reason || error.data.message}</p>
 					</Alert>:null}
 				</Col>
 			</Row>
 			<Row className="justify-content-center">
 				<Col sm="auto">
-					<h4>User Settings</h4>
+					<h4>{t('User Settings')}</h4>
 				</Col>
 			</Row>
 			<Row className="mb-2">
 				<Col>
 					<Form onSubmit={handleSubmit((data) => {dispatch(sagaSetUser({id: user.userInfo?.id, ...data}))})}>
 						<Form.Group as={Row} className="mb-3" controlId="formBasicFirstName">
-							<Form.Label column sm="2">First name</Form.Label>
+							<Form.Label column sm="2">{t('First name')}</Form.Label>
 							<Col sm="7">
 								{(!firstRender && !loadGetUser && user.userInfo)?<Form.Control {...register("first_name")} defaultValue={user.userInfo.first_name} type="text" placeholder="Enter first name" isInvalid={!!errors.first_name} />:null}
 								<Form.Control.Feedback type="invalid">
-									{errors.first_name?.message}
+									{t(errors.first_name?.message)}
 								</Form.Control.Feedback>
 							</Col>
 						</Form.Group>
 						<Form.Group as={Row} className="mb-3" controlId="formBasicLastName">
-							<Form.Label column sm="2">Last name</Form.Label>
+							<Form.Label column sm="2">{t('Last name')}</Form.Label>
 							<Col sm="7">
 								{(!firstRender && !loadGetUser && user.userInfo)?<Form.Control {...register("last_name")} defaultValue={user.userInfo.last_name} type="text" placeholder="Enter last name" isInvalid={!!errors.last_name} />:null}
 								<Form.Control.Feedback type="invalid">
-									{errors.last_name?.message}
+									{t(errors.last_name?.message)}
 								</Form.Control.Feedback>
 							</Col>
 						</Form.Group>
 						<Form.Group as={Row} className="mb-3" controlId="formBasicLang">
-							<Form.Label column sm="2">Language</Form.Label>
+							<Form.Label column sm="2">{t('Language')}</Form.Label>
 							<Col sm="7">
 								{loadLangs?<Filler size="1.25rem" />:null}
 								{(!firstRender && !loadLangs && user.userInfo)?<Form.Select {...register("langId")} defaultValue={user.userInfo.langId} isInvalid={!!errors.lang}>
 									{langs.map((entry, index) => {
-										return <option key={index} value={entry.id}>{entry.title}</option>
+										return <option key={index} value={entry.id}>{t(entry.title)}</option>
 									})}
 								</Form.Select>:null}
 								<Form.Control.Feedback type="invalid">
-									{errors.lang?.message}
+									{t(errors.lang?.message)}
 								</Form.Control.Feedback>
 							</Col>
 						</Form.Group>
 						<Form.Group as={Row} className="mb-3" controlId="formBasicTheme">
-							<Form.Label column sm="2">Theme</Form.Label>
+							<Form.Label column sm="2">{t('Theme')}</Form.Label>
 							<Col sm="7">
 								{loadThemes?<Filler size="1.25rem" />:null}
 								{(!firstRender && !loadThemes && user.userInfo)?<Form.Select {...register("themeId")} defaultValue={user.userInfo.themeId} isInvalid={!!errors.theme}>
 									{themes.map((entry, index) => {
-										return <option key={index} value={entry.id}>{entry.title}</option>
+										return <option key={index} value={entry.id}>{t(entry.title)}</option>
 									})}
 								</Form.Select>:null}
 								<Form.Control.Feedback type="invalid">
-									{errors.theme?.message}
+									{t(errors.theme?.message)}
 								</Form.Control.Feedback>
 							</Col>
 						</Form.Group>
 						<Row className="justify-content-center">
 							<Col md="auto">
-								<Button variant="outline-primary" type="submit">Save</Button>
+								<Button variant="outline-primary" type="submit">{t('Save')}</Button>
 							</Col>
 						</Row>
 					</Form>

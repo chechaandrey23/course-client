@@ -1,0 +1,23 @@
+{
+	"Filter Selected Reviews": "Filter Selected Reviews",
+	"Tags": "Tags",
+	"Groups": "Groups",
+	"Titles": "Titles",
+	"Authors": "Authors",
+	"Sorting": "Sorting",
+	"Chose field": "Chose field",
+	"type": "type",
+	"Chose type": "Chose type",
+	"ASC": "ASC",
+	"DESC": "DESC",
+	"reset": "reset",
+	"filter": "filter",
+	"Filters": "Filters",
+	"authorRating": "authorRating",
+	"averageEditorRating": "averageEditorRating",
+	"averageUserRating": "averageUserRating",
+	"countComments": "countComments",
+	"createdAt": "createdAt",
+	"updatedAt": "updatedAt",
+	"draft": "draft"
+}

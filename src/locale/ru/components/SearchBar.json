@@ -1,0 +1,7 @@
+{
+	"Enter query": "Введите запрос",
+	"Search": "Поиск",
+	"Query is required": "Запрос обязателен",
+	"Query must be at least 3 characters": "Запрос должен содержать не менее 3 символов",
+	"Query must not exceed 255 characters": "Запрос должен быть не более 255 символов"
+}

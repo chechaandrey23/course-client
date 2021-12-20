@@ -1,0 +1,7 @@
+{
+	"Modal Confirm Removing Comment": "Подтвеждение удаление комментария",
+	"Are you sure you want to remove comment id: {} ?": "Вы действительно хотите удалить комментарий с ид: {{id}} ?",
+	"Close": "Закрыть",
+	"Remove Comment": "Удалить Комментарий",
+	"Remove": "Удалить"
+}

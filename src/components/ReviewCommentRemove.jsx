@@ -6,7 +6,7 @@ import {useTranslation} from "react-i18next";
 import {sagaRemoveComment} from '../redux/saga/user.comments.js'
 
 export default function ReviewCommentRemove(props) {
-	const {t} = useTranslation();
+	const {t} = useTranslation('components/ReviewCommentRemove');
 	const dispatch = useDispatch();
 
 	const [show, setShow] = useState(false);
@@ -26,15 +26,15 @@ export default function ReviewCommentRemove(props) {
 	}, [props]);
 
 	return (<>
-		<Button variant="danger" size="sm" onClick={handleShow}>Remove</Button>
-		<Modal show={show} onHide={handleClose} animation={false} centered size="md">
+		<Button variant="danger" size="sm" onClick={handleShow}>{t('Remove')}</Button>
+		<Modal show={show} onHide={handleClose} animation={false} centered size="lg">
 			<Modal.Header closeButton>
-				<Modal.Title>Modal Confirm Removing Comment</Modal.Title>
+				<Modal.Title>{t('Modal Confirm Removing Comment')}</Modal.Title>
 			</Modal.Header>
-			<Modal.Body>Are you sure you want to remove comment id: {props.id} ?</Modal.Body>
+			<Modal.Body>{t('Are you sure you want to remove comment id: {} ?', {id: props.id})}</Modal.Body>
 			<Modal.Footer className="justify-content-center">
-				<Button variant="secondary" onClick={handleClose}>Close</Button>
-				<Button variant="danger" onClick={handleOKClose}>Remove Comment</Button>
+				<Button variant="secondary" onClick={handleClose}>{t('Close')}</Button>
+				<Button variant="danger" onClick={handleOKClose}>{t('Remove Comment')}</Button>
 			</Modal.Footer>
 		</Modal>
 	</>);

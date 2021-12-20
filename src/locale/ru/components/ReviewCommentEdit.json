@@ -1,0 +1,12 @@
+{
+	"Modal Edit Comment": "Окно редактирования комментария",
+	"Server Error Message": "Сообщение ошибки сервера",
+	"comment": "комментарий",
+	"Enter comment": "Введите комментарий",
+	"Close": "Закрыть",
+	"Edit": "Редактировать",
+	"Save Comment": "Сохранить Комментарий",
+	"Comment is required": "Комментарий обязателен",
+	"Commeent must be at least 10 characters": "Комментарий должен содержать не менее 10 символов",
+	"Comment must be maximum 3000 characters": "Комментарий не может содержать более 3000 символов"
+}

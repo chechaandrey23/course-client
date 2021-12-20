@@ -7,6 +7,9 @@ import {useForm, useController, Controller} from 'react-hook-form';
 import AsyncSelect from 'react-select/async';
 import {AsyncPaginate} from 'react-select-async-paginate';
 import {useSearchParams, useNavigate} from "react-router-dom";
+import {yupResolver} from '@hookform/resolvers/yup';
+import * as Yup from 'yup';
+import {useTranslation} from "react-i18next";
 
 import {unique} from '../helpers/unique.js';
 
@@ -19,6 +22,7 @@ import {setFilterData, setEditorFilterData} from '../redux/custom.filter.js';
 
 // prop with authors, sortField, typeFilter(user|editor)
  export default function PopoverFilterReviews(props) {
+	const {t} = useTranslation('components/PopoverFilterReviews');
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const {register, handleSubmit, setValue, control, reset, formState: {errors}} = useForm(/*{resolver: yupResolver(validationSchema)}*/);
@@ -78,8 +82,8 @@ import {setFilterData, setEditorFilterData} from '../redux/custom.filter.js';
 
 	return (
 		<OverlayTrigger rootClose={true} delay={0} trigger="click" /*key={placement}*/ placement="bottom" overlay={
-			<Popover id="popover-filter-reviews" style={{minWidth: '500px'}} >
-				<Popover.Header as="h3">Filter Selected Reviews</Popover.Header>
+			<Popover id="popover-filter-reviews" style={{minWidth: '550px'}} >
+				<Popover.Header as="h3">{t('Filter Selected Reviews')}</Popover.Header>
 				<Popover.Body>
 					<Form onSubmit={handleSubmit((data) => {
 						let query = Object.keys(data).reduce((acc, key) => {
@@ -103,8 +107,8 @@ import {setFilterData, setEditorFilterData} from '../redux/custom.filter.js';
 						document.body.click();
 					})}>
 						<Form.Group as={Row} className="mb-3" controlId="formTags">
-							<Form.Label column sm="2">Tags</Form.Label>
-							<Col sm="10">
+							<Form.Label column sm="3">{t('Tags')}</Form.Label>
+							<Col sm="9">
 								<Controller name="tags"
 											control={control}
 											defaultValue={(() => {
@@ -141,13 +145,13 @@ import {setFilterData, setEditorFilterData} from '../redux/custom.filter.js';
 																		options={tags} />
 											}} />
 								<Form.Control.Feedback type="invalid">
-									{errors.tags?.message}
+									{t(errors.tags?.message)}
 								</Form.Control.Feedback>
 							</Col>
 						</Form.Group>
 						<Form.Group as={Row} className="mb-3" controlId="formGroups">
-							<Form.Label column sm="2">Groups</Form.Label>
-							<Col sm="10">
+							<Form.Label column sm="3">{t('Groups')}</Form.Label>
+							<Col sm="9">
 								<Controller name="groups"
 											control={control}
 											defaultValue={(() => {
@@ -178,17 +182,18 @@ import {setFilterData, setEditorFilterData} from '../redux/custom.filter.js';
 																	isMulti
 																	isSearchable={false}
 																	defaultOptions
+																	classNamePrefix="form-select"
 																	//onInputChange={this.handleInputChange}
 																	/>
 											}} />
 								<Form.Control.Feedback type="invalid">
-									{errors.groups?.message}
+									{t(errors.groups?.message)}
 								</Form.Control.Feedback>
 							</Col>
 						</Form.Group>
 						<Form.Group as={Row} className="mb-3" controlId="formTitles">
-							<Form.Label column sm="2">Titles</Form.Label>
-							<Col sm="10">
+							<Form.Label column sm="3">{t('Titles')}</Form.Label>
+							<Col sm="9">
 								<Controller name="titles"
 											control={control}
 											defaultValue={(() => {
@@ -225,13 +230,13 @@ import {setFilterData, setEditorFilterData} from '../redux/custom.filter.js';
 																		options={titles} />
 											}} />
 								<Form.Control.Feedback type="invalid">
-									{errors.tags?.message}
+									{t(errors.tags?.message)}
 								</Form.Control.Feedback>
 							</Col>
 						</Form.Group>
 						{props.withAuthors?<Form.Group as={Row} className="mb-3" controlId="formAuthos">
-							<Form.Label column sm="2">Authors</Form.Label>
-							<Col sm="10">
+							<Form.Label column sm="3">{t('Authors')}</Form.Label>
+							<Col sm="9">
 								<Controller name="authors"
 											control={control}
 											defaultValue={(() => {
@@ -271,34 +276,34 @@ import {setFilterData, setEditorFilterData} from '../redux/custom.filter.js';
 																		defaultOptions />
 											}} />
 								<Form.Control.Feedback type="invalid">
-									{errors.groups?.message}
+									{t(errors.groups?.message)}
 								</Form.Control.Feedback>
 							</Col>
 						</Form.Group>:null}
 
 						<Form.Group as={Row} className="mb-3">
-							<Form.Label column sm="2">Sorting</Form.Label>
-							<Col sm="5">
+							<Form.Label column sm="3">{t('Sorting')}</Form.Label>
+							<Col sm="4">
 								<Form.Select {...register("sortField")} defaultValue={searchParams.get("sortField")} isInvalid={!!errors.sortField} >
-									<option value="" selected disabled>Chose field</option>
+									<option value="" selected disabled>{t('Chose field')}</option>
 									{props.sortFields.map((entry, index) => {
-										return <option key={index} value={entry}>{entry}</option>
+										return <option key={index} value={entry}>{t(entry)}</option>
 									})}
 								</Form.Select>
 								<Form.Control.Feedback type="invalid">
-									{errors.sortField?.message}
+									{t(errors.sortField?.message)}
 								</Form.Control.Feedback>
 							</Col>
 
-							<Form.Label column sm="2">type</Form.Label>
+							<Form.Label column sm="2">{t('type')}</Form.Label>
 							<Col sm="3">
 								<Form.Select {...register("sortType")} defaultValue={searchParams.get("sortType")} isInvalid={!!errors.sortType} >
-									<option value="" selected disabled>Chose type</option>
-									<option value="ASC" >ASC</option>
-									<option value="DESC">DESC</option>
+									<option value="" selected disabled>{t('Chose type')}</option>
+									<option value="ASC" >{t('ASC')}</option>
+									<option value="DESC">{t('DESC')}</option>
 								</Form.Select>
 								<Form.Control.Feedback type="invalid">
-									{errors.sortType?.message}
+									{t(errors.sortType?.message)}
 								</Form.Control.Feedback>
 							</Col>
 						</Form.Group>
@@ -312,17 +317,17 @@ import {setFilterData, setEditorFilterData} from '../redux/custom.filter.js';
 									setValue('titles', []);
 									setValue('sortField', null);
 									setValue('sortType', null);
-								}}>reset</Button>
+								}}>{t('reset')}</Button>
 							</Col>
 							<Col sm="auto">
-								<Button variant="outline-success" type="submit">filter</Button>
+								<Button variant="outline-success" type="submit">{t('filter')}</Button>
 							</Col>
 						</Row>
 					</Form>
 				</Popover.Body>
 			</Popover>
 		} >
-			<Button variant="outline-primary">Filters</Button>
+			<Button variant="outline-primary">{t('Filters')}</Button>
 		</OverlayTrigger>
 	)
 }

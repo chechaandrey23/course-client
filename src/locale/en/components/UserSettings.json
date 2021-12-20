@@ -1,0 +1,16 @@
+{
+	"Server Error Message": "Server Error Message",
+	"User Settings": "User Settings",
+	"First name": "First name",
+	"Last name": "Last name",
+	"Language": "Language",
+	"Theme": "Theme",
+	"Save": "Save",
+	"lang ID is required": "lang ID is required",
+	"Theme ID is required": "Theme ID is required",
+	"russian": "russian",
+	"english": "english",
+	"ukranian": "ukranian",
+	"dark": "dark",
+	"light": "light"
+}

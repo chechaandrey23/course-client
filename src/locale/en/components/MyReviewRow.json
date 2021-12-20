@@ -1,0 +1,9 @@
+{
+	"V": "V",
+	"E": "E",
+	"R": "R",
+	"Modal Confirm Removing Review": "Modal Confirm Removing Review",
+	"Are you sure you want to remove review id: {} {}/{}?": "Are you sure you want to remove review id: {{id}} {{group}}/{{title}}?",
+	"Close": "Close",
+	"Remove Review": "Remove Review"
+}

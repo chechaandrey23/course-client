@@ -1,0 +1,17 @@
+{
+	"Comments": "Комментарии",
+	"Not Found": "Еще нету",
+	"more": "еще комментарии",
+	"Unknown": "Неизвестно",
+	"Create Comment": "Создать комментарий",
+	"Modal Create New Comment": "Добавление нового коментария",
+	"Server Error Message": "Сообщение ошибки сервера",
+	"comment": "комментарий",
+	"Enter comment": "Введите комментарий",
+	"Close": "Закрыть",
+	"Add Comment": "Добавить комментарий",
+	"Comments NOT FOUND!!!": "Комментариев нет!!!",
+	"Comment is required": "Комментарий обязателен",
+	"Commeent must be at least 10 characters": "Комментарий должен содержать не менее 10 символов",
+	"Comment must be maximum 3000 characters": "Комментарий не может содержать более 3000 символов"
+}

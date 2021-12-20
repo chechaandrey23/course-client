@@ -27,7 +27,7 @@ export default function ReviewItem(props) {
 	}, []);
 
 	return (
-		<div style={{minHeight: '300px', minWidth: '300px'}} className="border border-primary rounded bg-light mt-1 mb-1">
+		<div style={{minHeight: '300px', minWidth: '300px'}} className="border border-primary rounded mt-1 mb-1">
 			{loadTags?<Filler ignorePadding={false} size='4.5rem' />:null}
 			<ReactWordcloud words={words}
 							options={{

@@ -8,13 +8,13 @@ import ReviewCommentEdit from './ReviewCommentEdit';
 import Filler from './Filler';
 
 export default function ReviewCommentItem(props) {
-	const {t} = useTranslation();
+	const {t} = useTranslation('components/ReviewCommentItem');
 
 	const user = useSelector((state) => state.userUser.user);
 
 	const commentProcessing = useSelector((state) => state.userComments.commentProcessing);
 
-	return (<Row className="border border-primary rounded bg-light mt-1 mb-1 pt-2 pb-2">
+	return (<Row className="border border-primary rounded mt-1 mb-1 pt-2 pb-2">
 		{(commentProcessing.includes(props.id))?<Filler ignorePadding={true} size='4.5rem' />:null}
 		<Col><span className="text-secondary">{props.author[0]} {props.author[1]}</span></Col>
 		<Col sm="auto">

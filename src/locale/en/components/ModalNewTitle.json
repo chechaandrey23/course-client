@@ -1,0 +1,15 @@
+{
+	"Modal Create New Title": "Modal Create New Title",
+	"Server Error Message": "Server Error Message",
+	"Title": "Title",
+	"Enter title": "Enter title",
+	"Description": "Description",
+	"Close": "Close",
+	"Create Title": "Create Title",
+	"Title is required": "Title is required",
+	"Title must be minimum 3 characters": "Title must be minimum 3 characters",
+	"Title must be maximum 255 characters": "Title must be maximum 255 characters",
+	"Description is required": "Description is required",
+	"Description must be at least 10 characters": "Description must be at least 10 characters",
+	"Description must be maximum 3000 characters": "Description must be maximum 3000 characters"
+}

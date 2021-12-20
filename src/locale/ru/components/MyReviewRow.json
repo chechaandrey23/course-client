@@ -1,0 +1,9 @@
+{
+	"V": "С",
+	"E": "Р",
+	"R": "У",
+	"Modal Confirm Removing Review": " Подтверждение удаления ревью",
+	"Are you sure you want to remove review id: {} {}/{}?": "Вы дейтвительно хотите удалить ревью ид: {{id}} {{group}}/{{title}}?",
+	"Close": "Закрыть",
+	"Remove Review": "Удалить Ревью"
+}

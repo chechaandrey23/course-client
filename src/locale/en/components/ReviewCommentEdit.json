@@ -1,0 +1,12 @@
+{
+	"Modal Edit Comment": "Modal Edit Comment",
+	"Server Error Message": "Server Error Message",
+	"comment": "comment",
+	"Enter comment": "Enter comment",
+	"Close": "Close",
+	"Save Comment": "Save Comment",
+	"Edit": "Edit",
+	"Comment is required": "Comment is required",
+	"Commeent must be at least 10 characters": "Commeent must be at least 10 characters",
+	"Comment must be maximum 3000 characters": "Comment must be maximum 3000 characters"
+}

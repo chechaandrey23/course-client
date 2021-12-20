@@ -14,6 +14,7 @@ import ImageUpload from './ImageUpload';
 import ImageLists from './ImageLists';
 
 export default function ModalImages() {
+	const {t} = useTranslation('image/ModalImages');
 	const [key, setKey] = useState('UploadImage');
 
 	const modalImages = useSelector(state => state.editorImages.modalImages);
@@ -25,29 +26,29 @@ export default function ModalImages() {
 	return (<>
 		<Modal show={modalImages} onHide={() => {dispatch(hideModalImage())}} animation={false} centered size="lg">
 			<Modal.Header closeButton>
-				<Modal.Title>Modal heading</Modal.Title>
+				<Modal.Title>{t('Modal Image Manager')}</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
 				<Tabs activeKey={key} onSelect={(k) => setKey(k)} id="uncontrolled-tab" className="mb-3">
-					<Tab eventKey="ImageLists" title="ImageLists">
+					<Tab eventKey="ImageLists" title={t('ImageLists')}>
 						<ImageLists />
 					</Tab>
-					<Tab eventKey="UploadImage" title="UploadImage">
+					<Tab eventKey="UploadImage" title={t('UploadImage')}>
 						<ImageUpload />
 					</Tab>
 				</Tabs>
 			</Modal.Body>
 			<Modal.Footer className="justify-content-center">
-				<Button variant="outline-secondary" onClick={() => {dispatch(hideModalImage())}}>Close</Button>
-				<Button variant="outline-secondary" disabled={!selectedImageInsert && !selectedImageUpload} onClick={() => {
+				<Button variant="outline-secondary" onClick={() => {dispatch(hideModalImage())}}>{t('Close')}</Button>
+				<Button variant="outline-danger" disabled={!selectedImageInsert && !selectedImageUpload} onClick={() => {
 					dispatch(selectedImageUploadAC(null));
 					dispatch(selectedImageInsertAC(null));
-				}}>Reset</Button>
+				}}>{t('Reset')}</Button>
 				<Button variant="outline-primary" disabled={!selectedImageInsert} onClick={() => {
 					dispatch(selectedImageUploadAC(null));
 					dispatch(selectedImageInsertAC(null));
 					dispatch(setURLImageToInsert({key: urlImageToInsert.key, url: selectedImageInsert.url}));
-				}}>Insert Image</Button>
+				}}>{t('Insert Image')}</Button>
 			</Modal.Footer>
 		</Modal>
 	</>)

@@ -1,0 +1,17 @@
+{
+	"Create": "Create Review",
+	"#": "#",
+	"id": "id",
+	"Group": "Group",
+	"Title": "Title",
+	"AR": "AR",
+	"AAR": "AAR",
+	"AUR": "AUR",
+	"comms": "comms",
+	"tags": "tags",
+	"description": "description",
+	"draft": "draft",
+	"ban": "ban",
+	"actions": "actions",
+	"more": "more reviews"
+}

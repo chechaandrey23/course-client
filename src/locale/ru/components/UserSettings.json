@@ -1,0 +1,16 @@
+{
+	"Server Error Message": "Сообщение ошибки сервера",
+	"User Settings": "Настройки Пользователя",
+	"First name": "Имя",
+	"Last name": "Фамилия",
+	"Language": "Язык интерфейса",
+	"Theme": "Тема оформления",
+	"Save": "Сохранить",
+	"lang ID is required": "Выбор языка обязателен",
+	"Theme ID is required": "Выбор темы обязателен",
+	"russian": "русский",
+	"english": "английский",
+	"ukranian": "украинский",
+	"dark": "темная",
+	"light": "светлая"
+}

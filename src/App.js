@@ -1,9 +1,8 @@
-import React from "react";
+import React, {useLayoutEffect} from "react";
 import {Routes, Route, Link} from "react-router-dom";
-
-import 'bootstrap/dist/css/bootstrap.min.css';
-
-import 'react-bootstrap-typeahead/css/Typeahead.css';
+import {useCookies} from 'react-cookie';
+import i18n from 'i18next';
+import {changeTheme} from './themes';
 
 import PageLogin from './pages/PageLogin';
 import PageRegistration from './pages/PageRegistration';
@@ -14,8 +13,16 @@ import PageMyReviews from './pages/PageMyReviews';
 import PageMyReviewEdit from './pages/PageMyReviewEdit';
 import PageSearchReviews from './pages/PageSearchReviews';
 import PageMyReviewNew from './pages/PageMyReviewNew';
+import PageMyReviewView from './pages/PageMyReviewView';
 
 export default function App() {
+	const [cookies] = useCookies();
+
+	useLayoutEffect(() => {
+		i18n.changeLanguage(cookies['Lang']);
+		changeTheme(cookies['Theme']);
+	}, [cookies]);
+
 	return (
 		<div>
 			<Routes>
@@ -30,6 +37,7 @@ export default function App() {
 				<Route path="review/:id" element={<PageReview />} />
 
 				<Route path="my-reviews" element={<PageMyReviews />} />
+				<Route path="my-review-view/:id" element={<PageMyReviewView />} />
 				<Route path="my-review-new" element={<PageMyReviewNew />} />
 				<Route path="my-review-edit/:id" element={<PageMyReviewEdit />} />
 				<Route path="/" element={<PageReviews />} />

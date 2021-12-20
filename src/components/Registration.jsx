@@ -31,90 +31,90 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function LogIn(props) {
-	const {t} = useTranslation();
+	const {t} = useTranslation('components/Registration');
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const error = useSelector((state) => state.userUser.errorRegistration);
 	const registration = useSelector((state) => state.userUser.registration);
-	
+
 	const {register, handleSubmit, watch, formState: {errors}} = useForm({resolver: yupResolver(validationSchema)});
-	
+
 	useEffect(() => {
 		if(registration) {
 			navigate('/user');
 			dispatch(registrationAC(false));
 		}
 	}, [registration]);
-	
+
 	return (
-		<Container className="border border-primary rounded bg-light mt-1 mb-1">
+		<Container className="border border-primary rounded mt-1 mb-1">
 			<Row className="mt-2">
 				<Col>
 					{error?<Alert variant="danger" onClose={() => {dispatch(errorRegistration(false))}} dismissible>
-						<Alert.Heading>Server Error Message</Alert.Heading>
+						<Alert.Heading>{t('Server Error Message')}</Alert.Heading>
 						<p>{error.data.reason}</p>
 					</Alert>:null}
 				</Col>
 			</Row>
 			<Row className="justify-content-center">
 				<Col sm="auto">
-					<h4>Registration</h4>
+					<h4>{t('Registration')}</h4>
 				</Col>
 			</Row>
 			<Row className="mb-2">
 				<Col>
 					<Form onSubmit={handleSubmit((data) => {dispatch(sagaRegistration(data))})}>
 						<Form.Group as={Row} className="mb-3" controlId="formBasicFullName">
-							<Form.Label column sm="2">Password</Form.Label>
+							<Form.Label column sm="2">{t('Full Name')}</Form.Label>
 							<Col sm="5">
-								<Form.Control {...register("first_name")} type="text" placeholder="First name" isInvalid={!!errors.first_name} />
+								<Form.Control {...register("first_name")} type="text" placeholder={t('First name')} isInvalid={!!errors.first_name} />
 								<Form.Control.Feedback type="invalid">
-									{errors.first_name?.message}
+									{t(errors.first_name?.message)}
 								</Form.Control.Feedback>
 							</Col>
 							<Col sm="5">
-								<Form.Control {...register("last_name")} type="text" placeholder="Last name" isInvalid={!!errors.last_name} />
+								<Form.Control {...register("last_name")} type="text" placeholder={t('Last name')} isInvalid={!!errors.last_name} />
 								<Form.Control.Feedback type="invalid">
-									{errors.last_name?.message}
+									{t(errors.last_name?.message)}
 								</Form.Control.Feedback>
 							</Col>
 						</Form.Group>
 						<Form.Group as={Row} className="mb-3" controlId="formBasicUsername">
-							<Form.Label column sm="2">User login</Form.Label>
+							<Form.Label column sm="2">{t('User login')}</Form.Label>
 							<Col sm="10">
-								<Form.Control {...register("user")} type="text" placeholder="Enter login" isInvalid={!!errors.user} />
+								<Form.Control {...register("user")} type="text" placeholder={t('Enter login')} isInvalid={!!errors.user} />
 								<Form.Control.Feedback type="invalid">
-									{errors.user?.message}
+									{t(errors.user?.message)}
 								</Form.Control.Feedback>
 							</Col>
 						</Form.Group>
 						<Form.Group as={Row} className="mb-3" controlId="formBasicEmail">
-							<Form.Label column sm="2">Email</Form.Label>
+							<Form.Label column sm="2">{t('Email')}</Form.Label>
 							<Col sm="10">
-								<Form.Control {...register("email")} type="email" placeholder="email@email" isInvalid={!!errors.email} />
+								<Form.Control {...register("email")} type="text" placeholder={t('email@email.com')} isInvalid={!!errors.email} />
 								<Form.Control.Feedback type="invalid">
-									{errors.email?.message}
+									{t(errors.email?.message)}
 								</Form.Control.Feedback>
 							</Col>
 						</Form.Group>
 						<Form.Group as={Row} className="mb-3" controlId="formBasicPassword">
-							<Form.Label column sm="2">Password</Form.Label>
+							<Form.Label column sm="2">{t('Password')}</Form.Label>
 							<Col sm="5">
-								<Form.Control {...register("password")} type="password" placeholder="Password" isInvalid={!!errors.password} />
+								<Form.Control {...register("password")} type="password" placeholder={t('Enter Password')} isInvalid={!!errors.password} />
 								<Form.Control.Feedback type="invalid">
-									{errors.password?.message}
+									{t(errors.password?.message)}
 								</Form.Control.Feedback>
 							</Col>
 							<Col sm="5">
-								<Form.Control {...register("password2")} type="password" placeholder="Password 2" isInvalid={!!errors.password2} />
+								<Form.Control {...register("password2")} type="password" placeholder={t('Confirm Password')} isInvalid={!!errors.password2} />
 								<Form.Control.Feedback type="invalid">
-									{errors.password2?.message}
+									{t(errors.password2?.message)}
 								</Form.Control.Feedback>
 							</Col>
 						</Form.Group>
 						<Row className="justify-content-center">
 							<Col md="auto">
-								<Button variant="outline-primary" type="submit">Registration</Button>
+								<Button variant="outline-primary" type="submit">{t('Registration')}</Button>
 							</Col>
 						</Row>
 					</Form>

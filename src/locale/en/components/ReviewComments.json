@@ -1,0 +1,17 @@
+{
+	"Comments": "Comments",
+	"Not Found": "Not Found",
+	"more": "more comments",
+	"Unknown": "Unknown",
+	"Create Comment": "Create Comment",
+	"Modal Create New Comment": "Modal Create New Comment",
+	"Server Error Message": "Server Error Message",
+	"comment": "comment",
+	"Enter comment": "Enter comment",
+	"Close": "Close",
+	"Add Comment": "Add Comment",
+	"Comments NOT FOUND!!!": "Comments NOT FOUND!!!",
+	"Comment is required": "Comment is required",
+	"Commeent must be at least 10 characters": "Commeent must be at least 10 characters",
+	"Comment must be maximum 3000 characters": "Comment must be maximum 3000 characters"
+}

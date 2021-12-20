@@ -13,11 +13,11 @@ import ReviewRating from './ReviewRating';
 import ReviewLike from './ReviewLike';
 
 export default function ReviewItem(props) {
-	const {t} = useTranslation();
+	const {t} = useTranslation('components/ReviewItem');
 	const [cookies,, removeCookie] = useCookies();
 
 	return (
-		<Container className="border border-primary rounded bg-light mt-1 mb-1">
+		<Container className="border border-primary rounded mt-1 mb-1">
 			<Row className="align-items-center mt-1 mb-1">
 				<Col>
 					<Link to={'/reviews'+'?'+queryString.stringify({groups: [props.groupId]}, {arrayFormat: 'bracket'})}><span className="h6">{props.group}</span></Link>
@@ -43,7 +43,7 @@ export default function ReviewItem(props) {
 			<Row className="align-items-center mt-1 mb-1">
 				<Col><span className="text-secondary">{t('intlDateTime', {val: new Date(props.date)})}</span></Col>
 				<Col md="auto">
-					<Link to={"/review/"+props.id}><span className="h6">full review</span></Link>
+					<Link to={"/review/"+props.id}><span className="h6">{t('full review')}</span></Link>
 				</Col>
 			</Row>
 		</Container>

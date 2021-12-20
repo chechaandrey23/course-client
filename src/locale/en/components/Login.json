@@ -1,0 +1,18 @@
+{
+	"Server Error Message": "Server Error Message",
+	"Authorization": "Authorization",
+	"User login": "User login",
+	"Enter login": "Enter login",
+	"Password": "Password",
+	"Entre password": "Entre password",
+	"LogIn": "LogIn",
+	"logIn with GitHub": "logIn with GitHub",
+	"logIn with FaceBook": "logIn with FaceBook",
+	"logIn with Google": "logIn with Google",
+	"Username is required": "Username is required",
+	"Username must be at least 4 characters": "Username must be at least 4 characters",
+	"Username must not exceed 20 characters": "Username must not exceed 20 characters",
+	"Password is required": "Password is required",
+	"Password must be at least 6 characters": "Password must be at least 6 characters",
+	"Password must not exceed 40 characters": "Password must not exceed 40 characters"
+}

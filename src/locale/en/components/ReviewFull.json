@@ -1,0 +1,12 @@
+{
+	"This review has been banned and cannot be published!": "This review has been banned and cannot be published!",
+	"Please contact the Moderator for details!": "Please contact the Moderator for details!",
+	"This review is marked as a draft and has not been published!": "This review is marked as a draft and has not been published!",
+	"You can change this by specifying the appropriate options!": "You can change this by specifying the appropriate options!",
+	"Unknown": "Unknown",
+	"Average Editors rating": "Average Editors rating",
+	"Average Users rating": "Average Users rating",
+	"Review": "Review",
+	"NOT FOUND!!!": "NOT FOUND!!!",
+	"intlDateTime": "Created: {{val, datetime}}"
+}

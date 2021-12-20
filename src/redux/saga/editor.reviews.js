@@ -15,7 +15,7 @@ function* getReviewsSaga({payload = {}}) {
 	const res = yield call(request, {
 		method: 'get',
 		url: `/editor/reviews`,
-		params: payload,
+		params: payload.params,
 		...defaultRequestSettings
 	});
 	yield put(getReviews(res.data));
@@ -27,6 +27,7 @@ function* moreReviewsSaga({payload = {}}) {
 	const res = yield call(request, {
 		method: 'get',
 		url: `/editor/reviews`,
+		params: payload.params,
 		...defaultRequestSettings
 	});
 	yield put(moreReviews(res.data));
@@ -63,14 +64,14 @@ function* editReviewSaga({payload = {}}) {
 	}
 }
 
-/*
 function* newReviewSaga({payload = {}}) {
 	try {
 		yield put(startLoadNewReview());
 		const res = yield call(request, {
 			method: 'post',
 			url: `/editor/review-new`,
-			data: {},
+			data: {groupId: payload.group, titleId: payload.title, description: payload.description || '', text: payload.text || '',
+					tags: payload.tags || [], authorRating: payload.authorRating || 0, draft: payload.draft},
 			...defaultRequestSettings
 		});
 		yield put(newReview(res.data));
@@ -81,7 +82,6 @@ function* newReviewSaga({payload = {}}) {
 		yield put(endLoadNewReview());
 	}
 }
-*/
 
 function* removeReviewSaga({payload = {}}) {
 	try {
@@ -101,27 +101,27 @@ function* removeReviewSaga({payload = {}}) {
 	}
 }
 
-const FETCH_REVIEWS = 'FETCH_REVIEWS';
-const FETCH_MORE_REVIEWS = 'FETCH_MORE_REVIEWS';
-const FETCH_REVIEW = 'FETCH_REVIEW';
-//const FETCH_NEW_REVIEW = 'FETCH_NEW_REVIEW';
-const FETCH_EDIT_REVIEW = 'FETCH_EDIT_REVIEW';
-const REMOVE_REVIEW = 'REMOVE_REVIEW';
+const EDITOR_FETCH_REVIEWS = 'EDITOR_FETCH_REVIEWS';
+const EDITOR_FETCH_MORE_REVIEWS = 'EDITOR_FETCH_MORE_REVIEWS';
+const EDITOR_FETCH_REVIEW = 'EDITOR_FETCH_REVIEW';
+const EDITOR_FETCH_NEW_REVIEW = 'EDITOR_FETCH_NEW_REVIEW';
+const EDITOR_FETCH_EDIT_REVIEW = 'EDITOR_FETCH_EDIT_REVIEW';
+const EDITOR_REMOVE_REVIEW = 'EDITOR_REMOVE_REVIEW';
 
 export const editorReviewsSagas = createSagas([
-	[FETCH_REVIEWS, getReviewsSaga],
-	[FETCH_MORE_REVIEWS, moreReviewsSaga],
-	[FETCH_REVIEW, getReviewSaga],
-	//[FETCH_NEW_REVIEW, newReviewSaga],
-	[FETCH_EDIT_REVIEW, editReviewSaga],
-	[REMOVE_REVIEW, removeReviewSaga]
+	[EDITOR_FETCH_REVIEWS, getReviewsSaga],
+	[EDITOR_FETCH_MORE_REVIEWS, moreReviewsSaga],
+	[EDITOR_FETCH_REVIEW, getReviewSaga],
+	[EDITOR_FETCH_NEW_REVIEW, newReviewSaga],
+	[EDITOR_FETCH_EDIT_REVIEW, editReviewSaga],
+	[EDITOR_REMOVE_REVIEW, removeReviewSaga]
 ]);
 
-export const {sagaGetReviews, sagaMoreReviews, sagaGetReview, /*sagaNewReview, */sagaEditReview, sagaRemoveReview} = createActions({
-	sagaGetReviews: FETCH_REVIEWS,
-	sagaMoreReviews: FETCH_MORE_REVIEWS,
-	sagaGetReview: FETCH_REVIEW,
-	//sagaNewReview: FETCH_NEW_REVIEW,
-	sagaEditReview: FETCH_EDIT_REVIEW,
-	sagaRemoveReview: REMOVE_REVIEW
+export const {sagaGetReviews, sagaMoreReviews, sagaGetReview, sagaNewReview, sagaEditReview, sagaRemoveReview} = createActions({
+	sagaGetReviews: EDITOR_FETCH_REVIEWS,
+	sagaMoreReviews: EDITOR_FETCH_MORE_REVIEWS,
+	sagaGetReview: EDITOR_FETCH_REVIEW,
+	sagaNewReview: EDITOR_FETCH_NEW_REVIEW,
+	sagaEditReview: EDITOR_FETCH_EDIT_REVIEW,
+	sagaRemoveReview: EDITOR_REMOVE_REVIEW
 });

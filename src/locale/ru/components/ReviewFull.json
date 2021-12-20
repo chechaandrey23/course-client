@@ -1,0 +1,12 @@
+{
+	"This review has been banned and cannot be published!": "Этот обзор заблокирован и не может быть опубликован!",
+	"Please contact the Moderator for details!": "За подробностями обращайтесь к Модератору!",
+	"This review is marked as a draft and has not been published!": "Этот обзор отмечен как черновик и еще не опубликован!",
+	"You can change this by specifying the appropriate options!": "Вы можете изменить это, указав соответствующие параметры!",
+	"Unknown": "Неизвестный",
+	"Average Editors rating": "Средний Рейтинг Авторов",
+	"Average Users rating": "Средний Рейтинг пользователей",
+	"Review": "Ревью",
+	"NOT FOUND!!!": "НЕ СУЩЕСТВУЕТ!!!",
+	"intlDateTime": "Добавлено {{val, datetime}}"
+}

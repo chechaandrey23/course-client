@@ -1,0 +1,23 @@
+{
+	"Filter Selected Reviews": "Выберите параметры фильтрации",
+	"Tags": "Теги",
+	"Groups": "Группы",
+	"Titles": "Тайтлы",
+	"Authors": "Авторы",
+	"Sorting": "Сортировать",
+	"Chose field": "Виберите поле",
+	"type": "тип",
+	"Chose type": "Виберите тип",
+	"ASC": "прямой",
+	"DESC": "обратный",
+	"reset": "Сброс фильтров",
+	"filter": "Фильтровать",
+	"Filters": "Фильтрация",
+	"authorRating": "Рейтипг Авторов",
+	"averageEditorRating": "Средний Рейтинг Авторов",
+	"averageUserRating": "Средний Рейтинг Юзеров",
+	"countComments": "Количество коментариев",
+	"createdAt": "Дата Создания",
+	"updatedAt": "Дата Обновления",
+	"draft": "Черновики"
+}

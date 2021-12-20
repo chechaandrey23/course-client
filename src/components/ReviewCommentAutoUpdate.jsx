@@ -6,6 +6,7 @@ import {useTranslation} from "react-i18next";
 import {sagaAutoUpdateComments} from '../redux/saga/user.comments.js';
 
 export default function ReviewCommentAutoUpdate(props) {
+	const {t} = useTranslation('components/ReviewCommentAutoUpdate');
 	const timeout = props.timeout * 1;
 	const dispatch = useDispatch();
 	const [timeOut, setTimeOut] = useState(0);
@@ -38,9 +39,9 @@ export default function ReviewCommentAutoUpdate(props) {
 
 	return (<div>
 		{!commentsAutoUpdateLoading?<>
-			<span className="h6 text-success">update through </span><span className="h6 text-success">{Math.round(props.timeout-timeOut)}</span>
+			<span className="h6 text-success">{t('update through ')}</span><span className="h6 text-success">{Math.round(props.timeout-timeOut)}</span>
 		</>:<>
-			<span className="h6 text-warning">autoupdate...</span>
+			<span className="h6 text-warning">{t('autoupdate...')}</span>
 		</>}
 	</div>);
 }

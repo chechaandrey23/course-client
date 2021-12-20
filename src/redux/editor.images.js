@@ -1,8 +1,11 @@
 import {createSlice} from '@reduxjs/toolkit'
 
+import Paginator from './helpers/Paginator.js'
+
 export const storeEditorImages = createSlice({
 	name: 'editorImages',
 	initialState: {
+		paginator: new Paginator(20),
 		modalImages: false,
 		urlImageToInsert: false,
 		images: [],
@@ -26,7 +29,8 @@ export const storeEditorImages = createSlice({
 			state.urlImageToInsert = action.payload;
 		},
 		getImages(state, action) {
-			state.images = [...action.payload];
+			//state.images = [...action.payload];
+			state.paginator.replace(state, 'images', action.payload);
 		},
 		startLoadImages(state, action) {
 			state.loadImages = true;
@@ -35,7 +39,8 @@ export const storeEditorImages = createSlice({
 			state.loadImages = false;
 		},
 		moreImages(state, action) {
-			state.images = [...state.images, ...action.payload];
+			//state.images = [...state.images, ...action.payload];
+			state.paginator.addWithReplace(state, 'images', action.payload);
 		},
 		startLoadMoreImages(state, action) {
 			state.loadMoreImages = true;
@@ -56,7 +61,8 @@ export const storeEditorImages = createSlice({
 			state.errorNewImage = action.payload;
 		},
 		newImageAC(state, action) {
-			state.images = [...action.payload, ...state.images];
+			//state.images = [...action.payload, ...state.images];
+			state.paginator.append(state, 'images', action.payload);
 			state.newImage = action.payload;
 		},
 		selectedImageInsertAC(state, action) {

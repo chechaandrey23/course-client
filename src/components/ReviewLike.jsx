@@ -10,7 +10,7 @@ import Filler from './Filler';
 import {sagaNewLike} from '../redux/saga/user.likes.js';
 
 export default function ReviewLike(props) {
-	const {t} = useTranslation();
+	const {t} = useTranslation('components/ReviewLike');
 	const dispatch = useDispatch();
 
 	const [newLike, setNewLike] = useState(null);
@@ -39,7 +39,7 @@ export default function ReviewLike(props) {
 			<Button variant="danger" disabled={isDisabled} size="sm" onClick={() => {
 				currentEvent.current = true;
 				dispatch(sagaNewLike({reviewId: props.reviewId}));
-			}}>Like</Button>
+			}}>{t('Like')}</Button>
 		</>
 	)
 }
