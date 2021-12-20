@@ -36,8 +36,8 @@ export default function TopNavBar() {
 
 	 useEffect(() => {
 		 if(user && user.userInfo) {
-			setCookie('Lang', user.userInfo.lang.lang);
-			setCookie('Theme', user.userInfo.theme.theme);
+			setCookie('Lang', user.userInfo?.lang?.lang);
+			setCookie('Theme', user.userInfo?.theme?.theme);
 		 }
 	 }, [user]);
 
